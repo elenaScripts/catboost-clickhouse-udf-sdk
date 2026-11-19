@@ -1,0 +1,14 @@
+.venv/
+.clickhouse/
+dist/
+.pytest_cache/
+__pycache__/
+*.egg-info/
+build/
+catboost_info/
+.env
+.env.*
+!.env.example
+.coverage
+htmlcov/
+.DS_Store

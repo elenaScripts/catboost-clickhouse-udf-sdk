@@ -1,0 +1,12 @@
+{
+  "model_name": "incident_risk_scenario",
+  "version": "1.0.0",
+  "task": "binary_classification",
+  "positive_class": 1,
+  "features": [
+    {"name": "service", "type": "categorical"},
+    {"name": "error_code", "type": "categorical"},
+    {"name": "response_ms", "type": "numeric"},
+    {"name": "retry_count", "type": "numeric"}
+  ]
+}
