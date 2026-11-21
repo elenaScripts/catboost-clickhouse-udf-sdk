@@ -13,9 +13,9 @@ SELECT incident_risk(
 ) AS risk;
 ```
 
-![Animated diagram: four SQL arguments pass through incident_risk in ClickHouse and return one score.](docs/images/readme-flow.gif)
+![Animated diagram: ClickHouse passes four SQL arguments to a CatBoost worker and returns its score.](docs/images/readme-flow.gif)
 
-[View the static diagram](docs/images/quickstart.svg).
+[View the static diagram](docs/images/readme-flow-static.png).
 
 This example uses a classifier trained on synthetic data. Its score is not a real incident probability.
 

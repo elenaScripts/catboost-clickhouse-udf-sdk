@@ -1,5 +1,5 @@
 include LICENSE
 include CONTRIBUTING.md
-recursive-include docs *.md *.svg *.gif
+recursive-include docs *.md *.svg *.gif *.png
 recursive-include examples *.py *.json *.sql
 recursive-include scripts *.py
