@@ -1,6 +1,6 @@
 # Score log events from a file
 
-This optional tutorial reads synthetic JSON log events with ClickHouse FileLog and scores them with the sample `incident_risk` UDF.
+Read synthetic JSON log events with ClickHouse FileLog, then score them with the sample `incident_risk` user-defined function (UDF).
 
 ```text
 app.log → FileLog → materialized view → MergeTree table → SQL + incident_risk
@@ -10,7 +10,7 @@ FileLog runs on the ClickHouse server and reads files accessible to that server.
 
 ## Prerequisites
 
-Complete [Start ClickHouse and deploy the UDF](local-demo.md#start-clickhouse-and-deploy-the-udf) in the local demo first. The commands below use its `demo` server, Python environment, and `incident_risk` function. Run them from the project root.
+Complete [Run the local demo](local-demo.md) through the “Start ClickHouse and deploy the UDF” section first. The commands below use its `demo` server, Python environment, and `incident_risk` function. Run them from the project root.
 
 The FileLog glob in this tutorial requires ClickHouse 26.10 or later. The demo was tested with ClickHouse 26.10.6.18 and `clickhousectl` 0.6.0 on macOS ARM64.
 
@@ -50,7 +50,7 @@ These commands create a directory under the local server's `user_files` director
    clickhousectl local client demo --query 'SELECT count() FROM filelog_events'
    ```
 
-   The first run should produce `6`. Ingestion runs in the background; if you see `0`, wait a few seconds and run the query again.
+   The first run returns `6`. Ingestion runs in the background. If you see `0`, wait a few seconds and run the query again.
 
 3. Score the events:
 

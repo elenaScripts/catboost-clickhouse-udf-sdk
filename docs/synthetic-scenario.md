@@ -1,6 +1,6 @@
 # Run the synthetic incident scenario
 
-This guide generates logs with service-specific latency, daily and weekly traffic patterns, and periods of service degradation. It then scores rows from a separate test period with an executable UDF. The generator also creates errors, retries, and slow responses outside incidents.
+This guide generates logs with service-specific latency, daily and weekly traffic patterns, and periods of service degradation. It then scores rows from a separate test period with an executable user-defined function (UDF). The generator also creates errors, retries, and slow responses outside incidents.
 
 The parameters are illustrative. They are not estimates from production logs, and the scores do not establish real-world performance. The generator samples a fixed number of events per period, so its output does not estimate real request volume or alerts per hour.
 
@@ -67,7 +67,7 @@ These steps use a server named `demo`. If needed, start it with the command in [
        --model dist/scenario/incident-risk.cbm --logs dist/scenario/test-logs.tsv
    ```
 
-## Interpretation of the labels and metrics
+## Interpret the labels and metrics
 
 A label of `1` means the row falls within a simulated incident window for its service. It does not mean that every request in the window failed. The four incident types change the distribution of latency and error codes by different amounts. Retries depend on each simulated request's error code and latency.
 

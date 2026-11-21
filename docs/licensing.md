@@ -18,7 +18,7 @@ ClickHouse Cloud is a separate hosted service with its own [service terms](https
 
 The Apache license does not grant general trademark rights. This SDK is independent and is not endorsed or supported by ClickHouse, Inc. or the CatBoost project.
 
-The current project and package names contain `ClickHouse`. The [ClickHouse trademark policy](https://clickhouse.com/legal/trademark-policy) restricts use of the mark in product names and describes conditions for compatibility statements. Review that policy before public release. Consider a distinct project name and seek permission or legal advice if needed. The policy also specifies a trademark legend for permitted uses.
+The project and package names contain `ClickHouse`. The [ClickHouse trademark policy](https://clickhouse.com/legal/trademark-policy) restricts use of the mark in product names and describes conditions for compatibility statements. The repository is public. Review the policy when distributing or promoting the project. Consider a distinct project name and seek permission or legal advice if needed. The policy also specifies a trademark legend for permitted uses.
 
 This review does not establish permission to use the CatBoost name as a product name. Check the applicable trademark rules separately before selecting a public name.
 

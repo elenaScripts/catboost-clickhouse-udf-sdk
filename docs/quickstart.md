@@ -1,6 +1,6 @@
-# Quickstart: Score a row in ClickHouse
+# Quickstart: score a row in ClickHouse
 
-In this guide, you will train a classifier on synthetic service logs, package it as an executable UDF, and call the UDF from a SQL query on a local ClickHouse server.
+Train a classifier on synthetic service logs, package it as an executable user-defined function (UDF), and call the UDF from a SQL query on a local ClickHouse server.
 
 The data and labels are synthetic. The model is for an integration demo, not real incident decisions.
 
@@ -90,7 +90,7 @@ catboost-ch build \
   --output dist/quickstart/incident-risk-udf.zip
 ```
 
-The CLI prints the path to the new ZIP. The ZIP contains `main.py`, `model.cbm`, `manifest.json`, and `requirements.txt`. The requirements file pins the CatBoost version installed in this environment. You do not need a ClickHouse server to build the ZIP.
+The CLI prints the path to the new ZIP archive. The archive contains `main.py`, `model.cbm`, `manifest.json`, and `requirements.txt`. The requirements file pins the CatBoost version installed in this environment. You do not need a ClickHouse server to build the ZIP.
 
 ## Configure the UDF on a local server
 
@@ -123,7 +123,7 @@ The following commands start a server named `quickstart` in this project. Use a 
      --python "$PWD/.venv/bin/python"
    ```
 
-   The deploy command loads the UDF on the local server. The SDK's `build` command only creates the archive.
+   The deploy command loads the UDF on the local server. The SDK's `build` command creates the archive but does not deploy the UDF.
 
 ## Call the UDF from SQL
 
@@ -160,4 +160,4 @@ Type `exit` to leave the ClickHouse client. To stop the local server, run:
 clickhousectl local clickhouse stop quickstart
 ```
 
-To load and score a sample table, follow [Run the local demo](local-demo.md). To package your own model for ClickHouse Cloud, follow [Package a model for ClickHouse Cloud](package-model.md). The Cloud upload has not been tested for this bundle.
+To load and score a sample table, follow [Run the local demo](local-demo.md). To package your own model for ClickHouse Cloud, follow [Package a model for ClickHouse Cloud](package-model.md). The archive has not been tested in ClickHouse Cloud.

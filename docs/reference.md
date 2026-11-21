@@ -1,8 +1,10 @@
 # Reference
 
+This reference describes the SDK and its executable user-defined functions (UDFs).
+
 ## Package requirements
 
-The SDK requires Python 3.10 or newer and CatBoost version 1.2 or newer, but below 2. The local demo pins CatBoost 1.2.10 and clickhousectl 0.6.0. The CLI pins the CatBoost version installed in the build environment in each bundle's `requirements.txt`.
+The SDK requires Python 3.10 or later and CatBoost 1.2 or later, but earlier than 2. The local demo pins CatBoost 1.2.10 and `clickhousectl` 0.6.0. The CLI pins the CatBoost version installed in the build environment in each bundle's `requirements.txt`.
 
 ## CLI
 

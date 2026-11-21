@@ -1,6 +1,6 @@
 # Run the local demo
 
-In this guide, you will train a CatBoost classifier on synthetic service logs, configure an executable UDF on a local ClickHouse server, and compare its results with direct CatBoost predictions.
+Train a CatBoost classifier on synthetic service logs and configure an executable user-defined function (UDF) on a local ClickHouse server. Then compare the UDF results with direct CatBoost predictions.
 
 The labels and data are synthetic. Do not use this model to make incident decisions.
 
@@ -131,7 +131,7 @@ These steps create `incident_logs` in the demo server's default database. If the
    clickhousectl local client demo --queries-file examples/incident-risk.sql
    ```
 
-   The threshold query reports 5,000 scored events by default. The first query lists recent events in score order. The labels only measure the synthetic example.
+   The threshold query reports 5,000 scored events by default. The first query lists recent events in score order. Use the labels to evaluate only the synthetic example.
 
 5. Compare 100 SQL scores with direct CatBoost scores.
 
@@ -149,4 +149,4 @@ Stop the server when you have finished:
 clickhousectl local clickhouse stop demo
 ```
 
-To restart it, run `clickhousectl local clickhouse start demo`. The data and UDF remain in the project directory. If you retrain the model, run `scripts/prepare_local_udf.py` and deploy the UDF again. Create a new server or table before loading a newly generated validation file so the comparison uses matching rows.
+To restart it, run `clickhousectl local clickhouse start demo`. The data and UDF remain in the project directory. If you retrain the model, run `python scripts/prepare_local_udf.py` and deploy the UDF again. Create a new server or table before loading a newly generated validation file so the comparison uses matching rows.

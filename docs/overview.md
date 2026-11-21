@@ -1,6 +1,6 @@
 # Overview
 
-This SDK packages an existing CatBoost model for use as an executable user-defined function (UDF) in ClickHouse. Once configured, the function can be called from a SQL query. The SDK does not train your model or deploy the function. The example scripts train models on synthetic data.
+This SDK packages a trained CatBoost model for use as an executable user-defined function (UDF) in ClickHouse. After you configure the UDF, you can call it from a SQL query. The SDK does not train your model or deploy the function. The example scripts train models on synthetic data.
 
 ## How scoring works
 
@@ -41,9 +41,9 @@ The SDK does not support ranking, multiclass output, multi-output regression, te
 
 ## Choose this approach
 
-Use a UDF when the features already live in ClickHouse and you want to score rows in SQL. A SQL expression may be enough for a simple rule. A separate inference service may fit better when application requests need a prediction without a database query.
+Use a UDF when the features are already in ClickHouse and you want to score rows in SQL. A SQL expression may be enough for a simple rule. A separate inference service may fit better when application requests need a prediction without a database query.
 
-The local demo has been tested on macOS ARM64. The generated bundle has not been tested in ClickHouse Cloud. Test your own model, data, and deployment environment before relying on its predictions.
+The local demo has been tested on macOS ARM64. The generated ZIP archive has not been tested in ClickHouse Cloud. Test your own model, data, and deployment environment before relying on its predictions.
 
 Start with the [quickstart](quickstart.md) or read the [use cases](use-cases.md).
 

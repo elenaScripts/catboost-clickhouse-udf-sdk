@@ -1,6 +1,6 @@
 # Package a model for ClickHouse Cloud
 
-Use this guide to package a trained CatBoost `.cbm` model as an executable UDF archive. The generated archive has not been tested in ClickHouse Cloud.
+Package a trained CatBoost `.cbm` model as an executable user-defined function (UDF) archive. The generated archive has not been tested in ClickHouse Cloud.
 
 ## Prerequisites
 

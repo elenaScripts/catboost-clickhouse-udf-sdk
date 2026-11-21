@@ -1,6 +1,6 @@
 # CatBoost ClickHouse UDF SDK
 
-Run CatBoost predictions in ClickHouse SQL. The SDK checks a trained model and its feature manifest, then packages them with a Python worker for an executable user-defined function (UDF).
+Run CatBoost predictions in ClickHouse SQL. The SDK checks a trained model against a feature manifest and packages both with a Python worker for an executable user-defined function (UDF).
 
 After you configure the UDF, call it from a query:
 
@@ -36,7 +36,7 @@ catboost-ch inspect --model model.cbm --manifest manifest.json
 catboost-ch build --model model.cbm --manifest manifest.json --output model-udf.zip
 ```
 
-The ZIP contains the model, manifest, worker, and a CatBoost dependency requirement. Configure the UDF on your ClickHouse server before calling it. Building the ZIP does not deploy it. See [Package a model for ClickHouse Cloud](docs/package-model.md).
+The ZIP archive contains the model, manifest, worker, and a CatBoost dependency requirement. Configure the UDF on your ClickHouse server before calling it. Building the ZIP does not deploy it. See [Package a model for ClickHouse Cloud](docs/package-model.md).
 
 ## Documentation
 

@@ -11,4 +11,4 @@ python -m pip install -e '.[test]'
 python -m pytest -q
 ```
 
-The tests train small models and check the manifest, package, worker protocol, and predictions. To check the UDF against a local ClickHouse server, follow the [local demo](docs/local-demo.md).
+The tests train small models and check the manifest, ZIP archive, worker protocol, and predictions. To check the UDF against a local ClickHouse server, follow the [local demo](docs/local-demo.md).
