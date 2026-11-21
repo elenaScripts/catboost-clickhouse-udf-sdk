@@ -1,12 +1,16 @@
 # Run the synthetic incident scenario
 
-This scenario generates logs with service-specific latency, daily and weekly traffic patterns, and periods of service degradation. The generator also creates errors, retries, and slow responses outside incidents. A model scores the rows in a separate test period.
+This guide generates logs with service-specific latency, daily and weekly traffic patterns, and periods of service degradation. It then scores rows from a separate test period with an executable UDF. The generator also creates errors, retries, and slow responses outside incidents.
 
 The parameters are illustrative. They are not estimates from production logs, and the scores do not establish real-world performance. The generator samples a fixed number of events per period, so its output does not estimate real request volume or alerts per hour.
 
+## Prerequisites
+
+Complete the installation steps in [Run the local demo](local-demo.md). The commands below use a local ClickHouse server named `demo` and the project's virtual environment.
+
 ## Generate the data and train the model
 
-Install the tools in [the local demo](local-demo.md). Then run these commands from the project root:
+Run these commands from the project root:
 
 ```bash
 source .venv/bin/activate

@@ -1,33 +1,55 @@
 # CatBoost ClickHouse UDF SDK
 
-Package a CatBoost model as an executable ClickHouse user-defined function (UDF). The worker loads the model once, accepts blocks of features over standard input, and returns one score per row.
+Run CatBoost predictions in ClickHouse SQL. The SDK checks a trained model and its feature manifest, then packages them with a Python worker for an executable user-defined function (UDF).
 
-This project is a prototype. The demo uses synthetic data and is not an incident detection system for production use.
+After you configure the UDF, call it from a query:
 
-The SDK supports binary classification and scalar regression models, numeric and categorical features, and the `TabSeparated` protocol with chunk headers. The bundle targets the ClickHouse Cloud Python 3.11 runtime. You can also run the example against a local ClickHouse server.
+```sql
+SELECT incident_risk(
+    CAST('checkout', 'Nullable(String)'),
+    CAST('500', 'Nullable(String)'),
+    CAST(1600, 'Nullable(Float64)'),
+    CAST(2, 'Nullable(Float64)')
+) AS risk;
+```
+
+![Animated diagram: four SQL arguments pass through incident_risk in ClickHouse and return one score.](docs/images/readme-flow.gif)
+
+[View the static diagram](docs/images/quickstart.svg).
+
+This example uses a classifier trained on synthetic data. Its score is not a real incident probability.
 
 ## Get started
 
-- [Run the local demo](docs/local-demo.md). Train a model, load synthetic logs, and call the UDF in SQL.
-- [Run the synthetic incident scenario](docs/synthetic-scenario.md). Compare scores across separate simulated time periods.
-- [Package your model](docs/package-model.md). Validate a model and create a ZIP for ClickHouse Cloud.
-- [Manifest and worker reference](docs/reference.md). Look up the feature contract and protocol.
+To train the example model, configure a local ClickHouse server, and run the query above, follow the [quickstart](docs/quickstart.md).
 
-The local demo was tested with Python 3.11, CatBoost 1.2.10, clickhousectl 0.6.0, and ClickHouse 26.10.6.18 on macOS ARM64. The Cloud upload has not been tested for this bundle. The demo labels are synthetic, so its scores do not establish performance on real incidents.
-
-## Run the tests
-
-From the project directory, use Python 3.11:
+To package your own model, install the SDK from a local copy of this repository:
 
 ```bash
-python3.11 -m venv .venv
-source .venv/bin/activate
-python -m pip install -e '.[test]'
-pytest -q
+python -m pip install -e .
 ```
 
-The tests train small models and check the manifest, package, worker protocol, and predictions. The local demo adds an integration check against ClickHouse.
+Then provide a CatBoost `.cbm` file and a [feature manifest](docs/reference.md#manifest):
+
+```bash
+catboost-ch inspect --model model.cbm --manifest manifest.json
+catboost-ch build --model model.cbm --manifest manifest.json --output model-udf.zip
+```
+
+The ZIP contains the model, manifest, worker, and a CatBoost dependency requirement. Configure the UDF on your ClickHouse server before calling it. Building the ZIP does not deploy it. See [Package a model for ClickHouse Cloud](docs/package-model.md).
+
+## Documentation
+
+- [Overview](docs/overview.md): how the UDF works and supported models.
+- [Use cases](docs/use-cases.md): examples of predictions in SQL.
+- [Tutorials](docs/tutorials.md): local deployment, FileLog, and a synthetic incident scenario.
+- [Reference](docs/reference.md): CLI, manifest, bundle, and worker protocol.
+- [Contributing](CONTRIBUTING.md): run the project tests.
+
+## Project status
+
+This is an independent prototype. The local demo has been tested with Python 3.11, CatBoost 1.2.10, clickhousectl 0.6.0, and ClickHouse 26.10.6.18 on macOS ARM64. The generated archive has not been tested in ClickHouse Cloud.
 
 ## License
 
-This project is available under the [MIT License](LICENSE).
+The SDK is available under the [MIT License](LICENSE). See [Licenses and trademarks](docs/licensing.md) for third-party dependencies and trademark information. This project is not affiliated with or endorsed by CatBoost or ClickHouse, Inc.
